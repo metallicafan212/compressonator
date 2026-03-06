@@ -87,6 +87,8 @@ check_cpu("defined(__arm__)" "arm" AMD_COMPRESSONATOR_ARM)
 
 check_cpu("defined(__arm64__) || defined(__aarch64__)" "arm64" AMD_COMPRESSONATOR_ARM64)
 
+check_cpu("defined(__powerpc64__)" "powerpc64" AMD_COMPRESSONATOR_PPC64)
+
 if (NOT AMD_COMPRESSONATOR_CHOSE_CPU)
     message(FATAL_ERROR "We don't support this architecture yet")
 endif()
