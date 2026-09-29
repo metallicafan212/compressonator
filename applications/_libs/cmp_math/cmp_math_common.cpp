@@ -236,6 +236,9 @@ float cpu_lerp2(CMP_Vec4uc C1, CMP_Vec4uc CA, CMP_Vec4uc CB, CMP_Vec4uc C2, CMP_
 
 #ifdef CMP_USE_XMMINTRIN
 #ifndef __linux__
+#ifdef __clang_major__
+__attribute__((target("sse3")))
+#endif
 float sse_lerp2(CMP_Vec4uc C1, CMP_Vec4uc CA, CMP_Vec4uc CB, CMP_Vec4uc C2, CMP_MATH_BYTE* encode1, CMP_MATH_BYTE* encode2)
 {
     // Initial Setup
@@ -295,6 +298,9 @@ float sse_lerp2(CMP_Vec4uc C1, CMP_Vec4uc CA, CMP_Vec4uc CB, CMP_Vec4uc C2, CMP_
     return (result1[0] + result2[0]);
 }
 
+#ifdef __clang_major__
+__attribute__((target("fma")))
+#endif
 float fma_lerp2(CMP_Vec4uc C1, CMP_Vec4uc CA, CMP_Vec4uc CB, CMP_Vec4uc C2, CMP_MATH_BYTE* encode1, CMP_MATH_BYTE* encode2)
 {
     // Initial Setup
